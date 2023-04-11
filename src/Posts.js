@@ -26,7 +26,7 @@ const Posts = ({navigation}) => {
       <View style={styles.item}>
         <View style={styles.userview}>
           <Image
-            source={require('../src/images/user.png')}
+            source={require('../src/images/user.jpg')}
             style={styles.userImage}
           />
           <Text style={styles.userName}>{userData.data.name}</Text>
