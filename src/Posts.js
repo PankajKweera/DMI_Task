@@ -16,10 +16,24 @@ const Posts = ({navigation}) => {
   useEffect(() => {
     getPosts();
   }, []);
+
+
+
+
+  
   const getPosts = async () => {
+    let tempData = [];
     const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-    setData(res.data);
+    res.data.map(item => {
+      if (userData.data.id == item.id) {
+        tempData.push(item);
+      }
+    });
+    setData(tempData);
   };
+
+
+
 
   const renderItem = ({item, index}) => {
     return (
@@ -31,11 +45,16 @@ const Posts = ({navigation}) => {
           />
           <Text style={styles.userName}>{userData.data.name}</Text>
         </View>
+
+         <Text style={styles.itemUserId}>{item.userId}</Text>
         <Text style={styles.itemTitle}>{item.title}</Text>
         <Text style={styles.itemDescription}>{item.body}</Text>
       </View>
     );
   };
+
+
+ 
   return (
     <View style={styles.container}>
       <StatusBar barStyle={'dark-content'} />
